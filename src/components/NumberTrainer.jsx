@@ -4,6 +4,7 @@ import './NumberTrainer.css'
 function NumberTrainer() {
   const [numbers, setNumbers] = useState([])
   const [revealed, setRevealed] = useState([]) // 追蹤哪些數字已被顯示
+  const [language, setLanguage] = useState('zh-TW') // 'zh-TW' 或 'en-US'
   const clickTimerRef = useRef(null)
 
   // 生成符合規則的數字：超過百位數以上只有前兩位數字，其餘都是0
@@ -53,16 +54,16 @@ function NumberTrainer() {
     return num.toLocaleString('en-US')
   }
 
-  // 使用 TTS 念出數字（英文）
+  // 使用 TTS 念出數字
   const speakNumber = (num) => {
     // 取消當前正在朗讀的內容
     window.speechSynthesis.cancel()
 
     // 創建語音合成實例
-    const utterance = new SpeechSynthesisUtterance(num.toLocaleString('en-US'))
+    const utterance = new SpeechSynthesisUtterance(formatNumber(num))
 
-    // 設定為英文
-    utterance.lang = 'en-US'
+    // 設定語言
+    utterance.lang = language
 
     // 設定語速（可調整：0.1 到 10，預設 1）
     utterance.rate = 0.9
@@ -106,9 +107,27 @@ function NumberTrainer() {
     })
   }
 
+  // 切換語言
+  const toggleLanguage = () => {
+    setLanguage(prev => prev === 'zh-TW' ? 'en-US' : 'zh-TW')
+  }
+
   return (
     <div className="container">
       <h1>數字訓練</h1>
+      <div className="language-toggle">
+        <span className="toggle-label">TTS 語言：</span>
+        <button
+          className={`toggle-btn ${language === 'zh-TW' ? 'active' : ''}`}
+          onClick={toggleLanguage}
+        >
+          <span className={language === 'zh-TW' ? 'active' : ''}>中文</span>
+          <span className={language === 'en-US' ? 'active' : ''}>English</span>
+          <div className="toggle-slider" style={{
+            transform: language === 'zh-TW' ? 'translateX(0)' : 'translateX(100%)'
+          }}></div>
+        </button>
+      </div>
       <p className="description">
         <small>單擊聽發音 | 雙擊顯示數字</small>
       </p>
