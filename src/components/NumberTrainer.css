@@ -1,0 +1,118 @@
+.container {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+.container h1 {
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 2.5rem;
+}
+
+.description {
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.description small {
+  color: #999;
+  font-size: 0.85rem;
+}
+
+.number-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.number-item {
+  font-size: 28px;
+  font-weight: bold;
+  color: #667eea;
+  padding: 15px;
+  margin: 10px 0;
+  background: #f7f7f7;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* 隱藏狀態：模糊效果 */
+.number-item.hidden {
+  filter: blur(12px);
+  color: #999;
+  background: #e5e5e5;
+}
+
+.number-item.hidden:hover {
+  filter: blur(10px);
+  background: #d8d8d8;
+}
+
+/* 顯示狀態 */
+.number-item.revealed {
+  filter: blur(0);
+  color: #667eea;
+  background: #f7f7f7;
+}
+
+.number-item.revealed:hover {
+  transform: scale(1.05);
+  background: #e8e8ff;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.number-item:active {
+  transform: scale(0.98);
+}
+
+.generate-btn {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.generate-btn:hover {
+  background: #5568d3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.generate-btn:active {
+  transform: translateY(0);
+}
+
+/* 響應式設計 */
+@media (max-width: 640px) {
+  .container {
+    padding: 30px 20px;
+  }
+
+  .container h1 {
+    font-size: 2rem;
+  }
+
+  .number-item {
+    font-size: 24px;
+    padding: 12px;
+  }
+
+  .generate-btn {
+    width: 100%;
+  }
+}
