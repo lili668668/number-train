@@ -14,12 +14,23 @@
   font-size: 2.5rem;
 }
 
+.settings-panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 20px 0;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 12px;
+}
+
 .language-toggle {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  margin: 20px 0;
 }
 
 .toggle-label {
@@ -63,7 +74,7 @@
   position: absolute;
   top: 4px;
   left: 4px;
-  width: calc(50% - 8px);
+  width: calc(50% - 4px);
   height: calc(100% - 8px);
   background: #667eea;
   border-radius: 16px;
@@ -166,6 +177,27 @@
 
   .container h1 {
     font-size: 2rem;
+  }
+
+  .settings-panel {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .language-toggle {
+    width: 100%;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .toggle-label {
+    font-size: 0.85rem;
+  }
+
+  .toggle-btn {
+    width: 100%;
+    max-width: 200px;
   }
 
   .number-item {
