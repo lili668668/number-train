@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import './NumberTrainer.css'
+import nzh from 'nzh/cn'
 
 function NumberTrainer() {
   const [numbers, setNumbers] = useState([])
@@ -53,7 +54,10 @@ function NumberTrainer() {
 
   // 格式化數字顯示（加入千分位逗號）
   const formatNumber = (num) => {
-    return num.toLocaleString(language)
+    if (language === 'zh-TW') {
+      return nzh.encodeS(num)
+    }
+    return num.toLocaleString('en-US')
   }
 
   // 使用瀏覽器內建 TTS 念出數字
@@ -216,7 +220,7 @@ function NumberTrainer() {
         <small>單擊聽發音 | 雙擊顯示數字</small>
       </p>
       <p className="description">
-        <small>瀏覽器的引擎語音速度較快，但可能會受限於裝置影響而有語言問題；線上語音的工具中文是有問題的，英文沒有問題，但產出速度較慢，仍在實驗中</small>
+        <small>瀏覽器的引擎語音速度較快，但可能會受限於裝置影響而有語言問題；線上語音的工具中文口音不是常見的腔調，英文則沒有問題，但產出速度較慢，仍在實驗中</small>
       </p>
       <ul className="number-list">
         {numbers.map((num, index) => (
@@ -226,7 +230,7 @@ function NumberTrainer() {
             onClick={() => handleClick(num)}
             onDoubleClick={() => handleDoubleClick(index)}
           >
-            {formatNumber(num)}
+            {num.toLocaleString('en-US')}
           </li>
         ))}
       </ul>
