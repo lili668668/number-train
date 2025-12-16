@@ -93,6 +93,10 @@
   line-height: 1.6;
 }
 
+.description.left-align {
+  text-align: left;
+}
+
 .description small {
   color: #999;
   font-size: 0.85rem;

@@ -92,22 +92,16 @@ function NumberTrainer() {
       audioRef.current = null
     }
 
-    // 將語言代碼轉換為 TTS 服務支援的格式
-    const voice = language === 'zh-TW' ? 'zf_xiaoxiao' : 'af_heart'
-
     try {
       // 使用新的 TTS API
-      const response = await fetch('https://kokoro.ballfish.io/api/v1/audio/speech', {
+      const response = await fetch('https://number-train-tts.ballfish.io/tts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          model: 'model',
-          voice: voice,
-          input: formatNumber(num),
-          response_format: 'mp3',
-          speed: 1
+          content: formatNumber(num),
+          language: language
         })
       })
 
@@ -219,8 +213,11 @@ function NumberTrainer() {
       <p className="description">
         <small>單擊聽發音 | 雙擊顯示數字</small>
       </p>
-      <p className="description">
-        <small>瀏覽器的引擎語音速度較快，但可能會受限於裝置影響而有語言問題；線上語音的工具中文口音不是常見的腔調，英文則沒有問題，但產出速度較慢，仍在實驗中</small>
+      <p className="description left-align">
+        <small>
+          瀏覽器的引擎語音速度較快，但可能會受限於裝置影響而有語言問題。<br/>
+          如果您發現發音不正確，請切換到線上語音的工具，因為需要連網，發音速度較慢，請耐心等候，感謝您的使用。
+        </small>
       </p>
       <ul className="number-list">
         {numbers.map((num, index) => (
